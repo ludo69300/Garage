@@ -1,6 +1,8 @@
 package com.garage.vehicule.option;
 
-public class Climatisation implements Option{
+import java.io.Serializable;
+
+public class Climatisation implements Serializable, Option{
 	protected double prix=347.3;
 	@Override
 	public Double getPrix() {
@@ -8,6 +10,6 @@ public class Climatisation implements Option{
 		return this.prix;
 	}
 	public String toString() {
-		return "Climatisation (" + this.getPrix() + "€) ";
+		return "Climatisation (" + this.getPrix() + "€)";
 	}
 }

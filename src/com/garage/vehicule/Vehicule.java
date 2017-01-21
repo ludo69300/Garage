@@ -1,44 +1,46 @@
 package com.garage.vehicule;
-import java.util.LinkedList;
+
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
+
 import com.garage.vehicule.moteur.*;
 import com.garage.vehicule.option.*;
 
-public class Vehicule {
+public class Vehicule implements Serializable{
 
   protected Double prix;
   protected String nom;
-  protected List<Option> option;
+  protected List<Option>options = new ArrayList<Option>();
   protected Marque nomMarquage;
   protected Moteur MonMoteur;
  
  public Vehicule(){
-	 List option = new LinkedList();
+
 	 
  }
 
  public String toString() {
-	String options = null;
-	options= "+ " + this.nomMarquage;
-	options= " : "+ this.nom;
-	options= " " + this.MonMoteur; 
-	for(int i = 0; i < option.size(); i++){
-		options= options+option.get(i);
-	}	
-	  return options;		  
+	
+	 return"+ " + this.nomMarquage +
+	" : "+ this.nom +
+	" " + this.MonMoteur + this.getOptions() +
+	"d'une valeur totale de " + this.prix + "€"
+	; 		  
 	  }
 
   public void addOption(Option opt) {
-	    option.add(opt);
+	    this.options.add(opt);
+	    this.prix=this.prix+opt.getPrix();
   }
 
   public Marque getMarque() {
   return this.nomMarquage;
   }
 
-  private List<Option> getOptions() {
-  return this.option;
+  public List<Option> getOptions() {
+  return this.options;
   }
 
   public Double getPrix() {
@@ -46,6 +48,7 @@ public class Vehicule {
   }
   public void setMoteur(Moteur MonMoteur){
 	 this.MonMoteur=MonMoteur;
+	 this.prix=MonMoteur.getPrix();
 	  
   }
 }

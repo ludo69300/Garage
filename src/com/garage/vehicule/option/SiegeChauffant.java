@@ -1,6 +1,8 @@
 package com.garage.vehicule.option;
 
-public class SiegeChauffant implements Option{
+import java.io.Serializable;
+
+public class SiegeChauffant implements Serializable, Option{
 	protected double prix=562.9;
 	
 	@Override
@@ -9,7 +11,7 @@ public class SiegeChauffant implements Option{
 		return this.prix;
 	}
 	public String toString() {
-		return "Siège chauffant" + this.getPrix() + "€) ";
+		return "Siège chauffant (" + this.getPrix() + "€)";
 	}
 	
 	

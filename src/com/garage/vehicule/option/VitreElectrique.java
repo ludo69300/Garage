@@ -1,6 +1,8 @@
 package com.garage.vehicule.option;
 
-public class VitreElectrique implements Option{
+import java.io.Serializable;
+
+public class VitreElectrique implements Serializable, Option{
 	protected double prix=212.35;
 
 	@Override
@@ -9,6 +11,6 @@ public class VitreElectrique implements Option{
 		return this.prix;
 	}
 	public String toString() {
-		return "Vitre electrique (" + this.getPrix() + "€) ";
+		return "Vitre electrique (" + this.getPrix() + "€)";
 	}
 }

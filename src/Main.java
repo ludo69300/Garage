@@ -1,23 +1,33 @@
-import com.garage.Garage;
+
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import com.garage.*;
 import com.garage.vehicule.*;
 import com.garage.vehicule.moteur.*;
 import com.garage.vehicule.option.*;
-import com.garage.Garage;
-import com.garage.Garage;
 
 public class Main {
     public static void main(String[] args) {
+        ObjectInputStream ois;
+        ObjectOutputStream oos;
    	 Garage garage = new Garage();   
    	 System.out.println(garage);
    	 
    	 Vehicule lag1 = new Lagouna();
    	 lag1.setMoteur(new MoteurEssence("150 Chevaux", 10256d));
    	 lag1.addOption(new GPS());
-   	System.out.println(lag1);
    	 lag1.addOption(new SiegeChauffant());
    	 lag1.addOption(new VitreElectrique());
    	 garage.addVoiture(lag1);
-
    		 
    	 Vehicule A300B_2 = new A300B();
    	 A300B_2.setMoteur(new MoteurElectrique("1500 W", 1234d));
@@ -25,7 +35,7 @@ public class Main {
    	 A300B_2.addOption(new BarreDeToit());
    	 A300B_2.addOption(new SiegeChauffant());
    	 garage.addVoiture(A300B_2);
-   	 
+   	
    	 Vehicule d4_1 = new D4();
    	 d4_1.setMoteur(new ModeurDiesel("200 Hdi", 25684.80d));
    	 d4_1.addOption(new BarreDeToit());
@@ -51,5 +61,34 @@ public class Main {
    	 d4_2.addOption(new GPS());
    	 d4_2.addOption(new VitreElectrique());
    	 garage.addVoiture(d4_2);
-    }
+    try {
+      oos = new ObjectOutputStream(
+              new BufferedOutputStream(
+                new FileOutputStream(
+                  new File("garage.txt"))));
+        	
+      //Nous allons écrire chaque objet Game dans le fichier
+      oos.writeObject(garage);
+      //Ne pas oublier de fermer le flux !
+      oos.close();
+        	
+      //On récupère maintenant les données !
+      ois = new ObjectInputStream(
+              new BufferedInputStream(
+                new FileInputStream(
+                  new File("garage.txt"))));
+      try {
+        System.out.println(((Garage)ois.readObject()).toString());            
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+	
+      ois.close();
+        	
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }     	
+  }
 }

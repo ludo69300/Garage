@@ -1,27 +1,36 @@
 package com.garage;
-
-import java.util.LinkedList;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.garage.vehicule.Vehicule;
 
-public class Garage {
+public class Garage implements Serializable {
 
-  protected List<Vehicule> voiture;
+  protected List<Vehicule> voitures = new ArrayList<Vehicule> ();
     
-    public Garage (){
-    	List voiture = new LinkedList();
-    }
 
   public String toString() {
-  return "*************************\n" +
+	  String listeVoitures = "";
+	  String garageVide = "";
+	  for(Vehicule v : voitures)
+		  listeVoitures=listeVoitures + v.toString() +"\n";
+	  if (listeVoitures=="") {
+		  garageVide="Aucune voiture sauvegardée !\n";
+		  
+	  }
+	  
+
+  return garageVide +	
+		  "*************************\n" +
   		 "* Garage OpenClassrooms *\n" +
-  		 "*************************" + 
-  		voiture;
-  }
+  		 "*************************\n" +
+  		listeVoitures;
+  		
+    }
 
   public void addVoiture(Vehicule voit) {
-	  voiture.add(voit);
+	  this.voitures.add(voit);
   }
   
 

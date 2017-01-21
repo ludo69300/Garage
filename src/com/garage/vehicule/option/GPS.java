@@ -1,6 +1,8 @@
 package com.garage.vehicule.option;
 
-public class GPS implements Option {
+import java.io.Serializable;
+
+public class GPS implements Serializable, Option {
 	protected double prix=113.5;
 	@Override
 	public Double getPrix() {
@@ -8,6 +10,6 @@ public class GPS implements Option {
 		return this.prix;
 	}
 	public String toString() {
-		return "GPS (" + this.getPrix() + "€) ";
+		return "GPS (" + this.getPrix() + "€)";
 	}
 }

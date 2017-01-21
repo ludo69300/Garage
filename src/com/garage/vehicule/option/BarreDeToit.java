@@ -1,6 +1,8 @@
 package com.garage.vehicule.option;
 
-public class BarreDeToit implements Option{
+import java.io.Serializable;
+
+public class BarreDeToit implements Serializable, Option{
 	protected double prix=29.9;
 	@Override
 	public Double getPrix() {
@@ -8,6 +10,6 @@ public class BarreDeToit implements Option{
 		return this.prix;
 	}
 	public String toString() {
-		return "Barre de toit (" + this.getPrix() + "€) ";
+		return "Barre de toit (" + this.getPrix() + "€)";
 	}
 }

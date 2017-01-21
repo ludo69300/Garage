@@ -1,6 +1,8 @@
 package com.garage.vehicule.moteur;
 
-public class Moteur {
+import java.io.Serializable;
+
+public class Moteur implements Serializable{
 
   protected TypeMoteur type;
 
@@ -18,15 +20,15 @@ public String toString() {
   return this.getType() + " " + this.getCylindre()+ " ("+ this.getPrix() + "€)";
   }
 
-  private Double getPrix() {
+public Double getPrix() {
   return prix;
   }
   
-  private String getCylindre() {
+public String getCylindre() {
   return cylindre;
   }
   
-  private TypeMoteur getType() {
+public TypeMoteur getType() {
 	  return type;
 	  }
 
